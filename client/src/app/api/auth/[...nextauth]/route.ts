@@ -13,27 +13,34 @@ export const authOptions: NextAuthOptions = {
                 if (!credentials?.email || !credentials?.password) return null;
 
                 try {
-                    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
-                        method: "POST",
-                        body: JSON.stringify({
-                            email: credentials.email,
-                            password: credentials.password,
-                        }),
-                        headers: { "Content-Type": "application/json" }
+                    // Direct database access for optimization (Serverless)
+                    const { prisma } = await import("@/lib/prisma"); // Dynamic import to prevent client bundle issues
+                    const bcrypt = (await import("bcrypt")).default;
+                    const jwt = (await import("jsonwebtoken")).default;
+
+                    const user = await prisma.user.findUnique({
+                        where: { email: credentials.email }
                     });
 
-                    const data = await res.json();
+                    if (!user || !user.password) return null;
 
-                    if (res.ok && data.token) {
-                        return {
-                            id: data.data.user.id,
-                            name: data.data.user.name,
-                            email: data.data.user.email,
-                            role: data.data.user.role,
-                            accessToken: data.token,
-                        };
-                    }
-                    return null;
+                    const isPasswordValid = await bcrypt.compare(credentials.password, user.password);
+                    if (!isPasswordValid) return null;
+
+                    const token = jwt.sign(
+                        { id: user.id, email: user.email, role: user.role },
+                        process.env.JWT_SECRET || "fallback_secret",
+                        { expiresIn: "24h" }
+                    );
+
+                    return {
+                        id: user.id,
+                        name: user.name,
+                        email: user.email,
+                        role: user.role,
+                        accessToken: token,
+                    };
+
                 } catch (error) {
                     console.error("NextAuth Auth Error:", error);
                     return null;
