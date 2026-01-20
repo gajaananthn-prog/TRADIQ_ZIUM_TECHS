@@ -1,0 +1,179 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-primary: #00f2ff;
+  --color-brand-secondary: #7000ff;
+  --color-brand-gold: #d4af37;
+  --color-brand-background: var(--bg-primary);
+  --color-brand-surface: var(--glass-bg);
+  --color-brand-border: var(--glass-border);
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+:root {
+  /* Default: Dark Theme */
+  --background: #050505;
+  --foreground: #ffffff;
+  --bg-primary: #050505;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --glass-bg: rgba(0, 0, 0, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: 30px;
+  --accent-gold: #d4af37;
+  --glow-color: rgba(212, 175, 55, 0.3);
+}
+
+[data-theme='light'] {
+  --background: #ffffff;
+  --foreground: #000000;
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --glass-blur: 40px;
+  --accent-gold: #b8860b;
+  --glow-color: rgba(184, 134, 11, 0.25);
+}
+
+* {
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.3s ease,
+    backdrop-filter 0.5s ease;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Intro Fade-in System */
+.content-mesh {
+  opacity: 0;
+  transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+body[data-zium-intro="done"] .content-mesh {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* Premium Glassmorphism */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+}
+
+.glass-pill {
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 9999px;
+}
+
+/* Gold Glow Hover */
+.gold-glow:hover {
+  box-shadow: 0 0 30px var(--glow-color);
+  border-color: var(--accent-gold);
+}
+
+/* Custom Gradients */
+.text-gradient {
+  background: linear-gradient(to right, var(--text-primary), var(--text-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.brand-gradient {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #B8860B 100%);
+  background-size: 200% 200%;
+}
+
+[data-theme='light'] .brand-gradient {
+  background: linear-gradient(135deg, #FFD700 0%, #FFB900 50%, #FFD700 100%);
+}
+
+.brand-text-gradient {
+  background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #B8860B 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+}
+
+[data-theme='light'] .brand-text-gradient {
+  background: linear-gradient(135deg, #FFD700 0%, #FFB900 50%, #FFD700 100%);
+}
+
+/* Smooth Scroll */
+html.lenis {
+  height: auto;
+}
+
+/* AI Pulse & Cinematic Animations */
+@keyframes ai-pulse {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px var(--brand-gold));
+  }
+
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 15px var(--brand-gold));
+  }
+
+  100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 0px var(--brand-gold));
+  }
+}
+
+.ai-pulse {
+  animation: ai-pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.bg-grid-subtle {
+  background-image:
+    linear-gradient(to right, rgba(212, 175, 55, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.03;
+  z-index: 9998;
+  background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
