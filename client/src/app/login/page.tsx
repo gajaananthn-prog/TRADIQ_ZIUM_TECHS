@@ -149,7 +149,7 @@ export default function LoginPage() {
 
                 {/* Footer Detail */}
                 <p className="text-center mt-6 text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
-                    TZT Neural Mesh v.2.0.0-neural | Secure Credentials Handshake Required
+                    TZT Neural Mesh v.2.1.0-debug | Secure Credentials Handshake Required
                 </p>
             </motion.div>
         </div>
