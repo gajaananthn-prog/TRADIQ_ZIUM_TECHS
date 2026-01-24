@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { Cpu, Lock, Mail, Loader2, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -62,9 +63,14 @@ export default function LoginPage() {
                         <motion.div
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            className="w-16 h-16 rounded-2xl brand-gradient flex items-center justify-center text-black mb-4 shadow-xl shadow-brand-gold/30 ai-pulse"
+                            className="relative w-16 h-16 rounded-2xl overflow-hidden mb-4 shadow-xl shadow-brand-gold/30 ai-pulse"
                         >
-                            <Cpu size={32} />
+                            <Image
+                                src="/logo.jpg"
+                                alt="Tradiq Zium Logo"
+                                fill
+                                className="object-cover"
+                            />
                         </motion.div>
                         <h1 className="text-3xl font-black tracking-tighter uppercase mb-2">Neural Login</h1>
                         <p className="text-muted-foreground text-sm text-center">Secure access to the TZT intelligence mesh</p>

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Menu, X, Cpu, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useSession, signOut } from "next-auth/react";
@@ -48,8 +49,13 @@ export default function Navbar() {
                 )}>
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-3 group ai-pulse">
-                        <div className="w-8 h-8 md:w-10 md:h-10 rounded-xl brand-gradient flex items-center justify-center text-black font-black text-xl md:text-2xl shadow-lg shadow-brand-gold/20 group-hover:rotate-12 transition-transform">
-                            T
+                        <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-xl overflow-hidden shadow-lg shadow-brand-gold/20 group-hover:rotate-12 transition-transform">
+                            <Image
+                                src="/logo.jpg"
+                                alt="Tradiq Zium Logo"
+                                fill
+                                className="object-cover"
+                            />
                         </div>
                         <span className="font-black text-lg md:text-xl tracking-tighter uppercase whitespace-nowrap">Tradiq Zium</span>
                     </Link>
