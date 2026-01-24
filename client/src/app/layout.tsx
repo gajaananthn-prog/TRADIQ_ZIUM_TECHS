@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   title: "TRADIQ ZIUM TECHS | Neural Intelligence SaaS",
   description: "Experience the next dimension of AI-powered software architecture by TZT.",
   icons: {
-    icon: "/logo.jpg",
+    icon: "/brand-logo-v2.jpg",
   },
 };
 

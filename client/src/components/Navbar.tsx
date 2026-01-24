@@ -51,7 +51,7 @@ export default function Navbar() {
                     <Link href="/" className="flex items-center space-x-3 group ai-pulse">
                         <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-xl overflow-hidden shadow-lg shadow-brand-gold/20 group-hover:rotate-12 transition-transform">
                             <Image
-                                src="/logo.jpg"
+                                src="/brand-logo-v2.jpg"
                                 alt="Tradiq Zium Logo"
                                 fill
                                 className="object-cover"

@@ -66,7 +66,7 @@ export default function LoginPage() {
                             className="relative w-16 h-16 rounded-2xl overflow-hidden mb-4 shadow-xl shadow-brand-gold/30 ai-pulse"
                         >
                             <Image
-                                src="/logo.jpg"
+                                src="/brand-logo-v2.jpg"
                                 alt="Tradiq Zium Logo"
                                 fill
                                 className="object-cover"
