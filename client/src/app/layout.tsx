@@ -25,6 +25,9 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "TRADIQ ZIUM TECHS | Neural Intelligence SaaS",
   description: "Experience the next dimension of AI-powered software architecture by TZT.",
+  icons: {
+    icon: "/logo.jpg",
+  },
 };
 
 export default async function RootLayout({
